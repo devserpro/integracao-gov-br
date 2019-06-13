@@ -11,9 +11,9 @@ public class GovBrWebView extends WebView {
 
     Context context;
 
-    public static final String DESENV = "https://testescp-ecidadao.estaleiro.serpro.gov.br";
-    public static final String HOMOLOGACAO = "https://testescp-ecidadao.estaleiro.serpro.gov.br";
-    public static final String PRODUCAO = "https://testescp-ecidadao.estaleiro.serpro.gov.br";
+    public static final String DESENV = "http://sso.staging.acesso.gov.br";
+    public static final String HOMOLOGACAO = "http://sso.validacao.acesso.gov.br";
+    public static final String PRODUCAO = "http://sso.acesso.gov.br";
 
     public GovBrWebView(Context context) {
         super(context);
@@ -23,22 +23,18 @@ public class GovBrWebView extends WebView {
     public GovBrWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView(context);
-
     }
 
     /**
-     *
      * @param ambiente
      */
     public void loginNoGovBr(String ambiente, GovBrWebViewClient client) {
-
         setWebViewClient(client);
 
         loadUrl(this.getUrlProvider(ambiente));
     }
 
     /**
-     *
      * @param context
      */
     private void initView(Context context) {
@@ -60,12 +56,12 @@ public class GovBrWebView extends WebView {
     }
 
     private String getUrlProvider(String urlProvider) {
-//        return urlProvider;
         return urlProvider +
-                "/scp/authorize?response_type=code&client_id=" + context.getString(R.string.gov_br_client_id) +
+                "/authorize?response_type=code&client_id=" + context.getString(R.string.gov_br_client_id) +
                 "&scope=" + context.getString(R.string.gov_br_scopes) +
                 "&redirect_uri=" + context.getString(R.string.gov_br_redirect_url) +
-                "&nonce=" + createRandomNumber() + "&state=" + createRandomNumber();
+                "&nonce=" + createRandomNumber() +
+                "&state=" + createRandomNumber();
     }
 
     private static String createRandomNumber() {
@@ -77,9 +73,5 @@ public class GovBrWebView extends WebView {
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.removeAllCookie();
     }
-
-
-
-
 
 }

@@ -1,6 +1,5 @@
 package br.serpro.cidadao.govbr;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -17,9 +16,7 @@ public class GovBrWebViewClientTest {
 
             @Override
             public void onCodeRecuperado(String code) {
-
                 codeRecuperado = code;
-
             }
         };
     }
@@ -50,7 +47,5 @@ public class GovBrWebViewClientTest {
 
         assertEquals("1231111", codeRecuperado);
     }
-
-
 
 }

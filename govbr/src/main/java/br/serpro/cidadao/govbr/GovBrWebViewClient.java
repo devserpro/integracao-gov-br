@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
 public abstract class GovBrWebViewClient extends WebViewClient {
 
     /**
-     *
      * @param code
      */
     public abstract void onCodeRecuperado(String code);
@@ -25,24 +24,19 @@ public abstract class GovBrWebViewClient extends WebViewClient {
     }
 
     @Override
-    public void onPageStarted(WebView view, String url,
-                              Bitmap favicon) {
+    public void onPageStarted(WebView view, String url, Bitmap favicon) {
     }
 
     @Override
     public void onPageFinished(WebView view, String url) {
-
         Pattern pattern = Pattern.compile("code=([^&]+)");
 
         Matcher matcher = pattern.matcher(url);
 
-        if(matcher.find()) {
-
+        if (matcher.find()) {
             onCodeRecuperado(matcher.group(1));
-
         }
 
     }
-
 
 }
