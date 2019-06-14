@@ -12,7 +12,7 @@ public class GovBrWebViewClientTest {
 
     @BeforeClass
     public static void setUp() {
-        client = new GovBrWebViewClient() {
+        client = new GovBrWebViewClient("") {
 
             @Override
             public void onCodeRecuperado(String code) {

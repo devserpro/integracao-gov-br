@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GovBr</string>
+    <string name="app_name">GOV.BR (app integração)</string>
     <string name="gov_br_client_id">111222333</string>
     <string name="gov_br_scopes">meuScope</string>
     <string name="gov_br_redirect_url">http://alberto.com</string>
