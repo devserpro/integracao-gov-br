@@ -61,7 +61,8 @@ class GovBrWebView : WebView {
 
     companion object {
         val DESENV = "http://sso.staging.acesso.gov.br"
-        val HOMOLOGACAO = "http://sso.validacao.acesso.gov.br"
+        val HOMOLOGACAO = "http://sso.staging.acesso.gov.br"
+//        val HOMOLOGACAO = "http://sso.validacao.acesso.gov.br"
         val PRODUCAO = "http://sso.acesso.gov.br"
 
         private fun randomString(length: Int): String {
