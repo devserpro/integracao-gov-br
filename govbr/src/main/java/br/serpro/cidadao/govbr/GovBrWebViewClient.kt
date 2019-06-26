@@ -10,7 +10,7 @@ import java.util.regex.Pattern
  * @param redirectUrl Url efetiva que foi cadastrada com o GOV.BR
  * @param urlPageLoaded Url final que será comparada ao carregar a página
  */
-abstract class GovBrWebViewClient(private val redirectUrl: String, private val urlPageLoaded: String = redirectUrl) : WebViewClient() {
+abstract class GovBrWebViewClient(private val redirectUrl: String, private val urlPageLoaded: String?) : WebViewClient() {
 
     /**
      * @param code
@@ -28,7 +28,9 @@ abstract class GovBrWebViewClient(private val redirectUrl: String, private val u
 
         val matcher = pattern.matcher(url)
 
-        if (url.startsWith(urlPageLoaded) && matcher.find()) {
+        val urlToCompare = urlPageLoaded ?: redirectUrl
+
+        if (url.startsWith(urlToCompare) && matcher.find()) {
             onCodeRecuperado(matcher.group(1))
         }
     }
