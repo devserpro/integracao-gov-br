@@ -6,7 +6,11 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import java.util.regex.Pattern
 
-abstract class GovBrWebViewClient(private val redirectUrl: String) : WebViewClient() {
+/**
+ * @param redirectUrl Url efetiva que foi cadastrada com o GOV.BR
+ * @param urlPageLoaded Url final que será comparada ao carregar a página
+ */
+abstract class GovBrWebViewClient(private val redirectUrl: String, private val urlPageLoaded: String = redirectUrl) : WebViewClient() {
 
     /**
      * @param code
@@ -24,7 +28,7 @@ abstract class GovBrWebViewClient(private val redirectUrl: String) : WebViewClie
 
         val matcher = pattern.matcher(url)
 
-        if (url.startsWith(redirectUrl) && matcher.find()) {
+        if (url.startsWith(urlPageLoaded) && matcher.find()) {
             onCodeRecuperado(matcher.group(1))
         }
     }
