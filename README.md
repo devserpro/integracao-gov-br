@@ -1,12 +1,12 @@
-# integracao-gov-br
+# Integracao GOVBR
 
 [![](https://jitpack.io/v/devserpro/integracao-gov-br.svg)](https://jitpack.io/#devserpro/integracao-gov-br)
 
 ## Como usar o componente em seu app Android
 
-Adicionar em seu build.gradle (app):
- 
-```
+Adicionar em seu `build.gradle` (app):
+
+```gradle
 allprojects {
     repositories {
         maven { url "https://jitpack.io" }
@@ -16,23 +16,23 @@ allprojects {
 
 e:
 
-```
+```gradle
 dependencies {
     compile 'com.github.jitpack:android-example:{latest version}'
 }
 ```
 
-Em seu arquivo de strings (strings.xml) incluir o seguinte:
+Em seu arquivo de strings (`strings.xml`) incluir o seguinte:
 
-```
+```xml
 <string name="gov_br_client_id">seu_client_id</string>
 <string name="gov_br_scopes">scopes_que_ira_usar</string>
 <string name="gov_br_redirect_url">sua_redirect_url</string>
 ```
 
-ou se possui flavors, pode declarar em seu build.gradle:
+ou se possui `flavors`, pode declarar em seu `build.gradle`:
 
-```
+```gradle
 flavor {
     resValue "string", "gov_br_client_id", "seu_client_id"
     resValue "string", "gov_br_scopes", "scopes_que_ira_usar"
@@ -41,7 +41,8 @@ flavor {
 ```
 
 # Exemplo de Activity
-```
+
+```kotlin
 class MainActivity : AppCompatActivity() {
 
    override fun onCreate(savedInstanceState: Bundle?) {
