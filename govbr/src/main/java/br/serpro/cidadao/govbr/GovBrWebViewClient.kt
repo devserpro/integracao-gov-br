@@ -10,16 +10,18 @@ import java.util.regex.Pattern
  * @param redirectUrl Url efetiva que foi cadastrada com o GOV.BR
  * @param urlPageLoaded Url final que será comparada ao carregar a página
  */
-abstract class GovBrWebViewClient(private val redirectUrl: String, private val urlPageLoaded: String?) : WebViewClient() {
+abstract class GovBrWebViewClient(private val redirectUrl: String, private val urlPageLoaded: String = redirectUrl) :
+    WebViewClient() {
 
     /**
      * @param code
      */
     abstract fun onCodeRecuperado(code: String)
 
+    /**
+     * Permitir certificado https do SERPRO INVALIDO
+     */
     override fun onReceivedSslError(view: WebView, handler: SslErrorHandler, error: SslError) {
-        //super.onReceivedSslError(view, handler, error);
-        //permitir certificado https do SERPRO INVALIDO
         handler.proceed()
     }
 
@@ -28,9 +30,7 @@ abstract class GovBrWebViewClient(private val redirectUrl: String, private val u
 
         val matcher = pattern.matcher(url)
 
-        val urlToCompare = urlPageLoaded ?: redirectUrl
-
-        if (url.startsWith(urlToCompare) && matcher.find()) {
+        if (url.startsWith(urlPageLoaded) && matcher.find()) {
             onCodeRecuperado(matcher.group(1))
         }
     }

@@ -1,11 +1,9 @@
 package br.serpro.cidadao.govbr
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.webkit.*
-
-import java.math.BigInteger
-import java.security.SecureRandom
 
 class GovBrWebView : WebView {
 
@@ -26,6 +24,7 @@ class GovBrWebView : WebView {
         loadUrl(this.getUrlProvider(ambiente))
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun initView() {
         clearWebView()
 
@@ -33,6 +32,9 @@ class GovBrWebView : WebView {
         settings.cacheMode = WebSettings.LOAD_NO_CACHE
         settings.saveFormData = false
         settings.javaScriptEnabled = true
+
+        //Corrige o problema do Android Webview: “Uncaught TypeError: Cannot read property 'getItem' of null”
+        settings.domStorageEnabled = true
     }
 
     private fun getUrlProvider(urlProvider: String): String {
@@ -60,10 +62,13 @@ class GovBrWebView : WebView {
     }
 
     companion object {
-        val DESENV = "http://sso.staging.acesso.gov.br"
-        val HOMOLOGACAO = "http://sso.staging.acesso.gov.br"
-//        val HOMOLOGACAO = "http://sso.validacao.acesso.gov.br"
-        val PRODUCAO = "http://sso.acesso.gov.br"
+        const val DESENV = "http://sso.staging.acesso.gov.br"
+
+        //Usando ambiente de staging para homologação enquanto não estabiliza o desenvolvimento do Gov.br
+        const val HOMOLOGACAO = "http://sso.staging.acesso.gov.br"
+        //const val HOMOLOGACAO = "http://sso.validacao.acesso.gov.br"
+
+        const val PRODUCAO = "http://sso.acesso.gov.br"
 
         private fun randomString(length: Int): String {
             val letters = "abcdefghijklmnopqrstuvwxyz0123456789"
