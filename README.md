@@ -22,6 +22,16 @@ dependencies {
 }
 ```
 
+Inclua em seu arquivo `AndroidManifest.xml` o seguinte:
+```xml
+<application
+        ...
+        android:usesCleartextTraffic="true"
+        ...>
+    ...
+</application>
+```
+
 Em seu arquivo de strings (`strings.xml`) incluir o seguinte:
 
 ```xml
