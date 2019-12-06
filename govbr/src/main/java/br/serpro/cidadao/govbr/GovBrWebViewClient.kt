@@ -18,13 +18,6 @@ abstract class GovBrWebViewClient(private val redirectUrl: String, private val u
      */
     abstract fun onCodeRecuperado(code: String)
 
-    /**
-     * Permitir certificado https do SERPRO INVALIDO
-     */
-    override fun onReceivedSslError(view: WebView, handler: SslErrorHandler, error: SslError) {
-        handler.proceed()
-    }
-
     override fun onPageFinished(view: WebView, url: String) {
         val pattern = Pattern.compile("code=([^&]+)")
 
